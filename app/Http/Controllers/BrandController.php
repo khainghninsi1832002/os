@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Brand;
 
 class BrandController extends Controller
 {
@@ -13,7 +14,7 @@ class BrandController extends Controller
      */
     public function index()
     {
-        //
+        return view('backend.brands.index');
     }
 
     /**
@@ -23,6 +24,7 @@ class BrandController extends Controller
      */
     public function create()
     {
+        return view('backend.brands.create');
         //
     }
 
@@ -34,7 +36,32 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-        //
+                // dd($request);
+
+        // Validation
+        $request->validate([
+            
+            'name'=>'required',
+            'photo'=>'required',
+            
+        ]);
+
+        // If include file, upload
+        // File Updoad 
+        $imgName=time().'.'.$request->photo->extension();
+        $request->photo->move(public_path('backend1/brandimg').$imgName);
+        $myfile='backend1/brandimg'.$imgName;
+
+        // Data insert
+        $brand=new Brand;
+        
+        $brand->name=$request->name;
+        $brand->photo=$myfile;
+
+        $brand->save();
+
+        // Redirect
+        return redirect()->route('brands.index');
     }
 
     /**
@@ -45,7 +72,8 @@ class BrandController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('backend.brands.show');
+        
     }
 
     /**
@@ -56,7 +84,8 @@ class BrandController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('backend.brands.edit');
+        
     }
 
     /**

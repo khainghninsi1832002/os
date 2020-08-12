@@ -63,10 +63,11 @@
 					<option value="{{$subcategory->id}}">{{$subcategory->name}}</option>
 					@endforeach
 				</optgroup>
+			</select>
 		</div>
 		<div class="form-group">
-			<label>Desctiption</label>
-			<textarea type="text" name="description" class="form-control"></textarea>
+			<label for="des">Description</label>
+			<textarea type="text" name="description" class="form-control" id="des"></textarea>
 		</div>
 		
 		<input type="submit" value="+ Create" class="btn btn-outline-primary" name="submit">
