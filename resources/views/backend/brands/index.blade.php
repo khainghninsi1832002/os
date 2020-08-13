@@ -13,15 +13,27 @@
 				</tr>
 			</thead>
 			<tbody>
+				@php $i=1; @endphp
+				@foreach($brands as $brand)
 				<tr>
-					<td>1</td>
-					<td>Brand One</td>
-					<td></td>
+					<td>{{$i++}}</td>
+					<td>{{$brand->name}}
+						
+					</td>
+					
+					<td><img src="{{asset($brand->photo)}}"></td>
 					<td>
+						<a href="{{route('brands.show',$brand->id)}}" class="btn btn-primary">Detail</a>
 						<a href="{{route('brands.edit',1)}}" class="btn btn-warning">Edit</a>
-						<a href="#" class="btn btn-danger">Delete</a>
+						<form method="POST" action="{{route('brands.destroy',$brand->id)}}" onsubmit="return confirm('Are you sure delete?')" class="d-inline-block">
+							@csrf
+							@method('DELETE')
+							<input type="submit" name="btnsubmit" value="Delete" class="btn btn-danger">
+						</form>
+						
 					</td>
 				</tr>
+				@endforeach
 			</tbody>
 		</table>
 	</div>

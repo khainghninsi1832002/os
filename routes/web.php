@@ -17,7 +17,18 @@ use Illuminate\Support\Facades\Route;
 //     return view('dashboard');
 //     // return 'Hello Laravel';
 // })->name('dashboard');
-Route::get('/','BackendController@dashboard')
+
+Route::get('/','FrontendController@home')->name('homepage');
+Route::get('filter_item','FrontendController@filter_item')->name('filter_item');
+Route::get('itemdetail/{id}','FrontendController@itemdetail')->name('itemdetail');
+Route::get('login','FrontendController@login')->name('loginpage');
+Route::get('profile','FrontendController@profile')->name('profile');
+Route::get('checkout','FrontendController@checkout')->name('checkout');
+Route::get('register','FrontendController@register')->name('registerpage');
+
+
+
+Route::get('dashboard','BackendController@dashboard')
 ->name('dashboard');
 Route::resource('items','ItemController');
 // 7 (get->4 / post->1 / put->1 / delete->1)

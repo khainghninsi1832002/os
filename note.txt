@@ -14,3 +14,21 @@ Item Manage
 		- redirect->(index)
 
 	-show in database
+
+13/8/2020
+---------
+
+- list edit delete
+- validation error, delete img if upload new image
+
+- UI
+----
+
+- filter item page
+- item detail page
+- checkout page
+- profile page
+- register page
+- login  page
+
+

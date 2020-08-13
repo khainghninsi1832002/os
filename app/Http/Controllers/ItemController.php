@@ -7,7 +7,6 @@ use App\Item;
 use App\Brand;
 use App\Subcategory;
 
-
 class ItemController extends Controller
 {
     /**
@@ -62,6 +61,7 @@ class ItemController extends Controller
         $imgName=time().'.'.$request->photo->extension();
         $request->photo->move(public_path('backend1/itemimg/'),$imgName);
         $myfile='backend1/itemimg/'.$imgName;
+        unlink($request->photo);
 
         // Data insert
         $item=new Item;
@@ -138,6 +138,7 @@ class ItemController extends Controller
             $request->photo->move(public_path('backend1/itemimg/'),$imgName);
             $myfile='backend1/itemimg/'.$imgName;
         //delete old photo (unlink)
+            unlink($request->oldphoto);
         }else{
             $myfile=$request->oldphoto;
         }
@@ -174,3 +175,5 @@ class ItemController extends Controller
         return redirect()->route('items.index');
     }
 }
+
+

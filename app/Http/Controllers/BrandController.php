@@ -14,7 +14,9 @@ class BrandController extends Controller
      */
     public function index()
     {
-        return view('backend.brands.index');
+        $brands=Brand::all();
+        // dd($brands);
+        return view('backend.brands.index',compact('brands'));
     }
 
     /**
@@ -24,6 +26,7 @@ class BrandController extends Controller
      */
     public function create()
     {
+     
         return view('backend.brands.create');
         //
     }
@@ -46,11 +49,18 @@ class BrandController extends Controller
             
         ]);
 
+        $input = $request->all();
+        $input['password'] = bcrypt($input['password']);
+        $user = User::create($input);
+    
+        return back()->with('success', 'User created successfully.');
+
         // If include file, upload
         // File Updoad 
         $imgName=time().'.'.$request->photo->extension();
-        $request->photo->move(public_path('backend1/brandimg').$imgName);
-        $myfile='backend1/brandimg'.$imgName;
+        $request->photo->move(public_path('backend1/brandimg/'),$imgName);
+        $myfile='backend1/brandimg/'.$imgName;
+        unlink($request->photo);
 
         // Data insert
         $brand=new Brand;
@@ -72,7 +82,8 @@ class BrandController extends Controller
      */
     public function show($id)
     {
-        return view('backend.brands.show');
+        $brand=Brand::find($id);
+        return view('backend.brands.show',compact('brand'));
         
     }
 
@@ -84,7 +95,8 @@ class BrandController extends Controller
      */
     public function edit($id)
     {
-        return view('backend.brands.edit');
+        $brand=Brand::find($id);
+        return view('backend.brands.edit',compact('brand'));
         
     }
 
@@ -97,7 +109,40 @@ class BrandController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // dd($request);
+
+        // Validation
+        $request->validate([
+            
+            'name'=>'required',
+            'photo'=>'sometimes',
+            
+        ]);
+
+        // If include file, upload
+        // File Updoad 
+        if ($request->hasFile('photo')) {
+            $imgName=time().'.'.$request->photo->extension();
+            $request->photo->move(public_path('backend1/brandimg/'),$imgName);
+            $myfile='backend1/brandimg/'.$imgName;
+            //delete old photo(unlink)
+            unlink($request->oldphoto);
+        }else{
+            $myfile=$request->oldphoto;
+        }
+        
+
+        // Data insert
+        $brand=Brand::find($id);
+        
+        $brand->name=$request->name;
+        $brand->photo=$myfile;
+
+        $brand->save();
+
+        // Redirect
+        return redirect()->route('brands.index');
+    
     }
 
     /**
@@ -108,6 +153,10 @@ class BrandController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $brand=Brand::find($id);
+        $brand->delete();
+        //redirect
+        return redirect()->route('brands.index');
+
     }
 }
