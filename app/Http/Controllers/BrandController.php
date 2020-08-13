@@ -49,11 +49,7 @@ class BrandController extends Controller
             
         ]);
 
-        $input = $request->all();
-        $input['password'] = bcrypt($input['password']);
-        $user = User::create($input);
-    
-        return back()->with('success', 'User created successfully.');
+   
 
         // If include file, upload
         // File Updoad 
