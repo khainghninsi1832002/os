@@ -14,7 +14,7 @@
 				</div>
 				<div class="col-md-8 mt-2 progress-bar-animated">
 					<table class="table table-bordered">
-						<tbody>
+						<thead>
 							<tr>
 								<td>Products Name:</td>
 								<td>{{$items->name}}</td>
@@ -27,6 +27,7 @@
 								<td>Products Price:</td>
 								<td>{{$items->price}}</td>
 							</tr>
+							
 							<tr>
 								<td>Description:</td>
 								<td>{{$items->description}}</td>
@@ -39,9 +40,14 @@
 								<td>Subcategory</td>
 								<td>{{$items->subcategory->name}}</td>
 							</tr>
-						</tbody>
-					</table>
+						</thead>
 
+					</table>	
+					<div class="card-footer">
+					{{-- <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small> --}}
+					<a href="#" class="btn btn-info addtocart" data-id="{{$items->id}}" data-name="{{$items->name}}" data-photo="{{asset('$items->photo')}}" data-price="{{$items->price}}" data-discount={{$items->discount}}>Add to Cart</a>
+					
+				</div>
 
 				</div>
 			</div>
@@ -50,4 +56,9 @@
 	</div>
 </div>
 
+@endsection
+@section('script')
+	<script type="text/javascript" src="{{asset('frontend/js/script.js')}}">
+		
+	</script>
 @endsection

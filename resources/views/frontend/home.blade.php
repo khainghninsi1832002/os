@@ -46,7 +46,7 @@
 				</div>
 				<div class="card-footer">
 					{{-- <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small> --}}
-					<a href="#" class="btn btn-info">Add to Cart</a>
+					<a href="#" class="btn btn-info addtocart" data-id="{{$item->id}}" data-name="{{$item->name}}" data-photo="{{$item->photo}}" data-price="{{$item->price}}" data-discount={{$item->discount}}>Add to Cart</a>
 					<a href="{{route('itemdetail',$item->id)}}" class="btn btn-primary">Detail</a>
 				</div>
 			</div>
@@ -60,4 +60,9 @@
 </div>
 <!-- /.col-lg-9 -->
 
+@endsection
+@section('script')
+	<script type="text/javascript" src="{{asset('frontend/js/script.js')}}">
+		
+	</script>
 @endsection

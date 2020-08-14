@@ -8,6 +8,7 @@ use App\Category;
 
 class SubcategoryController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *

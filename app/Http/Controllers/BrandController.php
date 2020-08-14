@@ -7,6 +7,7 @@ use App\Brand;
 
 class BrandController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -56,7 +57,7 @@ class BrandController extends Controller
         $imgName=time().'.'.$request->photo->extension();
         $request->photo->move(public_path('backend1/brandimg/'),$imgName);
         $myfile='backend1/brandimg/'.$imgName;
-        unlink($request->photo);
+        
 
         // Data insert
         $brand=new Brand;
@@ -151,6 +152,7 @@ class BrandController extends Controller
     {
         $brand=Brand::find($id);
         $brand->delete();
+        unlink($brand->photo);
         //redirect
         return redirect()->route('brands.index');
 
