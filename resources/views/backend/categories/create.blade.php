@@ -2,7 +2,7 @@
 @section('content')
 <div class="container-fluid">
 	<h2>Category Create(Form)</h2>
-{{-- 	@if ($errors->any())
+	{{-- @if ($errors->any())
 	    <div class="alert alert-danger">
 	        <ul>
 	            @foreach ($errors->all() as $error)
@@ -17,7 +17,7 @@
 		<div class="form-group">
 			<label>Name</label>
 			<input type="text" name="name" class="form-control">
-			@error('name')
+			 @error('name')
                     <span class="text-danger">{{ $errors->first('name') }}</span>
                 @enderror
 		</div>
@@ -28,7 +28,8 @@
                     <span class="text-danger">{{ $errors->first('photo') }}</span>
                 @enderror
 		</div>
-		
+
+
 		
 		<input type="submit" value="+ Create" class="btn btn-outline-primary" name="submit">
 	</form>

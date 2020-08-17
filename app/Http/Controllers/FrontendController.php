@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Item;
+use App\Subcategory;
 
 class FrontendController extends Controller
 {
@@ -15,8 +16,9 @@ class FrontendController extends Controller
     }
     public function filter_item($value='')
     {
+        $subcategories=Subcategory::take(3)->get();
         $items=Item::orderBy('id','desc')->take(6)->get();
-    	return view('frontend.items',compact('items'));
+    	return view('frontend.filter_item',compact('items','subcategories'));
     }
     public function login($value='')
     {
@@ -42,5 +44,17 @@ class FrontendController extends Controller
     {
     	return view('frontend.checkout');
     	
+    }
+    public function getItems(Request $request)
+    {
+        $sid = $request->sid;
+        if ($sid ==0) {
+           $items=Item::All();
+        }else{
+            $items = Subcategory::find($sid)->items;
+        }
+        
+        return $items;
+       // return "All items";
     }
 }

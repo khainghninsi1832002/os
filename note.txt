@@ -31,4 +31,30 @@ Item Manage
 - register page
 - login  page
 
+14-08-2020
+----------
+
+-  filter item page(data binding)
+-  profile page(link/ retrieve)*
+-  auth(multi role)
+
+Backend
+- Order Retrieve
+- (backend/orders)
+- create view (index.blade.php)
+- show table (order list)
+- OrderController/index
+
+- RUD (category,subcategory)
+
+17/8/2020
+-----------
+Frontend
+-  filter item page(data binding)
+-  profile UI
+
+
+Backend
+- Order Detail
+
 

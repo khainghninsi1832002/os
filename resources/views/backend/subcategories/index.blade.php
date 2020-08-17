@@ -14,16 +14,23 @@
 				</tr>
 			</thead>
 			<tbody>
+				@php $i=1; @endphp
+				@foreach($subcategories as $subcategory)
 				<tr>
-					<td>1</td>
+					<td>{{$i++}}</td>
 
-					<td>Subcategory One</td>
-					<td>Category One</td>
+					<td>{{$subcategory->name}}</td>
+					
+					
+					<td>{{$subcategory->category->name}}
+					</td>
+					
 					<td>
-						<a href="{{route('subcategories.edit',1)}}" class="btn btn-warning">Edit</a>
+						<a href="{{route('subcategories.edit',$subcategory->id)}}" class="btn btn-warning">Edit</a>
 						<a href="#" class="btn btn-danger">Delete</a>
 					</td>
 				</tr>
+				@endforeach
 			</tbody>
 		</table>
 	</div>

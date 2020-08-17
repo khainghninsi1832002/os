@@ -22,9 +22,9 @@
 			<label>Photo</label>
 			<input type="file" name="photo" class="form-control-file">
 			<img src="{{asset($brand->photo)}}">
+			<input type="hidden" name="oldphoto" value="{{$brand->photo}}">
 
 		</div>
-
 
 		
 		<input type="submit" value="+ Update" class="btn btn-outline-primary" name="submit">

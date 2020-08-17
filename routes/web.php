@@ -27,10 +27,10 @@ Route::get('checkout','FrontendController@checkout')->name('checkout');
 Route::get('register','FrontendController@register')->name('registerpage');
 
 //................................................................
-
+Route::post('/getitems','FrontendController@getItems')->name('getitems');
 
 //Backend.........................................................
-Route::middleware('auth')->group(function () {
+Route::middleware('role:admin')->group(function () {
 Route::resource('orders','OrderController');
 	
 Route::get('dashboard','BackendController@dashboard')

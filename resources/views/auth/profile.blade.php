@@ -1,27 +1,31 @@
 @extends('frontendtemplate')
 
 @section('content')
-<div class="col-lg-9 text-center">
+<div class="col-lg-9">
 	<h2>Customer Profile Page </h2>
-	
 	<div class="container">
 			<div class="row">
-				
-				<div class="col-md-12 mt-2">
-					<table class="table table-bordered text-center">
-						<thead>
+				<div class="col-md-4 mt-2 pt-2 animated in-left">
+					<p><img src="" class="img-fluid"></p>
+				</div>
+				<div class="col-md-8 mt-2 progress-bar-animated">
+					<table class="table table-bordered">
+						<tbody>
 							<tr>
 								<td> Name:</td>
-								<td>{{Auth::user()->name}}</td>
+								<td></td>
 							</tr>
 							<tr>
-								<td> Email:</td>
-								<td>{{Auth::user()->email}}</td>
+								<td> Address:</td>
+								<td></td>
 							</tr>
 							
+							<tr>
+								<td>Description:</td>
+								<td></td>
+							</tr>
 							
-							
-						</thead>
+						</tbody>
 					</table>
 				</div>
 			</div>
@@ -46,10 +50,4 @@
 		</div>
 </div>
 
-@endsection
-
-@section('script')
-	<script type="text/javascript" src="{{asset('frontend/js/script.js')}}">
-		
-	</script>
 @endsection

@@ -16,7 +16,8 @@ class SubcategoryController extends Controller
      */
     public function index()
     {
-        return view('backend.subcategories.index');
+        $subcategories=Subcategory::All();
+        return view('backend.subcategories.index',compact('subcategories'));
     }
 
     /**
@@ -75,8 +76,9 @@ class SubcategoryController extends Controller
      */
     public function show($id)
     {
-        return view('backend.subcategories.show');
-        
+        $subcategories=Subcategory::find($id);
+        return view('backend.subcategories.show',compact('subcategories'));
+       
     }
 
     /**
@@ -87,7 +89,9 @@ class SubcategoryController extends Controller
      */
     public function edit($id)
     {
-        return view('backend.subcategories.edit');
+        $categories=Category::All();
+        $subcategory=Subcategory::find($id);
+        return view('backend.subcategories.edit',compact('categories', 'subcategory'));
         
     }
 
@@ -100,7 +104,34 @@ class SubcategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+       
+        // dd($request);
+        //Validation
+        $request->validate([
+            
+            'name'=>'required',
+            
+           
+            'category'=>'required'
+        ]);
+
+        //if include file,upload
+        //file upload
+       
+        
+
+        //Data Update
+        $subcategory=Subcategory::find($id);
+      
+        $subcategory->name=$request->name;
+     
+        $subcategory->category_id=$request->category;
+        $subcategory->save();
+
+        //redirect
+        return redirect()->route('subcategories.index');
+
     }
 
     /**
@@ -111,6 +142,10 @@ class SubcategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $subcategory=Subcategory::find($id);
+        $subcategory->delete();
+       
+        //redirect
+        return redirect()->route('subcategories.index');
     }
 }
