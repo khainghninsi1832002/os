@@ -9,7 +9,7 @@
 			<div class="row">
 				
 				<div class="col-md-12 mt-2">
-					<table class="table table-bordered text-center">
+					<table class="table table-bordered ">
 						<thead>
 							<tr>
 								<td> Name:</td>
@@ -26,21 +26,7 @@
 					</table>
 				</div>
 			</div>
-					<h3 class="text-center">Order Detail</h3><hr class="w-25">
-					<table class="table">
-						<thead>
-							<tr>
-								<th>No.</th>
-								<th>Item Name</th>
-								<th>Price</th>
-								<th>Qty</th>
-								<th>Sub Total</th>
-							</tr>
-						</thead>
-						<tbody>
-							
-						</tbody>
-					</table>
+					
 
 
 			
@@ -50,8 +36,3 @@
 
 @endsection
 
-@section('script')
-	<script type="text/javascript" src="{{asset('frontend/js/script.js')}}">
-		
-	</script>
-@endsection
