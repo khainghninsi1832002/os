@@ -32,7 +32,7 @@ Route::post('/getitems','FrontendController@getItems')->name('getitems');
 //Backend.........................................................
 Route::middleware('role:admin')->group(function () {
 
-	
+	Route::resource('orders','OrderController');
 Route::get('dashboard','BackendController@dashboard')
 ->name('dashboard');
 Route::resource('items','ItemController');
@@ -41,7 +41,7 @@ Route::resource('brands','BrandController');
 Route::resource('categories','CategoryController');
 Route::resource('subcategories','SubcategoryController');
 });
-Route::resource('orders','OrderController');
+
 //..................................................................
 
 
