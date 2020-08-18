@@ -5,6 +5,7 @@
 	<h2>Customer Profile Page </h2>
 	
 	<div class="container">
+		
 			<div class="row">
 				
 				<div class="col-md-12 mt-2">
@@ -45,6 +46,7 @@
 			
 		</div>
 </div>
+
 
 @endsection
 

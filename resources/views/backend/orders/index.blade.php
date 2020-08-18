@@ -25,9 +25,11 @@
 					<td>{{$order->orderdate}}</td>
 					<td>{{$order->total}}MMK</td>
 					<td>{{$order->notes}}</td>
-					<td>{{$order->user_id}}</td>
-					<td><a href="" class="btn btn-primary">Detail</a></td>
-					
+					<td>{{$order->user->name}}</td>
+					<td>
+					<a href="{{route('orders.show',$order->id)}}">
+						<span class="badge badge-primary badge-pill btn btn-primary">Detail</span></a>
+					</td>
 				</tr>
 				@endforeach
 			</tbody>

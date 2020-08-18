@@ -3,17 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Order;
-use App\Item;
-use Illuminate\Support\Facades\Auth;
+use App\User;
 
-class OrderController extends Controller
+class UserController extends Controller
 {
-    public function _construct($value='')
-    {
-        $this->middleware('role:admin')->expect('store');
-        $this->middleware('role:customer')->only('store');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -21,9 +14,9 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders=Order::all();
+        $users=User::all();
          // dd($items);
-        return view('backend.orders.index',compact('orders'));
+        return view('frontend.users.index',compact('users'));
     }
 
     /**
@@ -44,27 +37,7 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->notes);
-        $cartArr=json_decode($request->shop_data);//string
-        $total=0;
-        foreach ($cartArr as $row) {
-            $total+=($row->price*$row->qty);
-        }
-        $order=new Order;
-        $order->voucherno=uniqid();
-        $order->orderdate=date('Y-m-d');
-        $order->user_id=Auth::id();//auth id
-        $order->notes=$request->notes;
-        $order->total=$total;
-        $order->save();//only saved into order table
-
-        //save into order_detail
-        foreach ($cartArr as  $row) {
-            $order->items()->attach($row->id,['qty'=>$row->qty]);
-        }
-
-        return 'Successfully!';
-
+        //
     }
 
     /**
@@ -75,11 +48,7 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        $order=Order::find($id);
-        // $users=User::All();
-        $items=Item::All();
-        // dd($item);
-        return view('backend.orders.show',compact('order','items'));
+        //
     }
 
     /**
